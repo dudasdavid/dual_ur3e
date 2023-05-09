@@ -74,7 +74,7 @@ leftarm_wrist_3_joint:
   type: position_controllers/JointPositionController
   joint: leftarm_wrist_3_joint
 
-leftarm/gripper_controller:
+leftarm/gripper_controller_old:
   # Define the type of gripper to config on "ur_control/controllers.py > GripperController"
   gripper_type: 'hand-e'
   type: position_controllers/GripperActionController
@@ -84,6 +84,14 @@ leftarm/gripper_controller:
   max_effort: 100
   stall_velocity_threshold: 0.001
   stall_timeout: 1.0
+
+leftarm/gripper_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - leftarm_hande_left_finger_joint
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
 
 ### RIGHT ARM ###
 
@@ -140,7 +148,7 @@ rightarm_wrist_3_joint:
   type: position_controllers/JointPositionController
   joint: rightarm_wrist_3_joint
 
-rightarm/gripper_controller:
+rightarm/gripper_controller_old:
   # Define the type of gripper to config on "ur_control/controllers.py > GripperController"
   gripper_type: 'hand-e'
   type: position_controllers/GripperActionController
@@ -150,3 +158,11 @@ rightarm/gripper_controller:
   max_effort: 100
   stall_velocity_threshold: 0.001
   stall_timeout: 1.0
+
+rightarm/gripper_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - rightarm_hande_left_finger_joint
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
